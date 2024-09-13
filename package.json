@@ -8,9 +8,7 @@
   "main": "genz.mjs",
   "scripts": {
     "test": "node test/_.mjs",
-    "release:patch": "node test/_.mjs && npm version patch && git push origin master --tags && npm publish",
-    "release:minor": "node test/_.mjs && npm version minor && git push origin master --tags && npm publish",
-    "release:major": "node test/_.mjs && npm version major && git push origin master --tags && npm publish"
+    "build:client": "npx terser addons/client.js"
   },
   "repository": {
     "type": "git",
