@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/skiano/genz/issues"
   },
-  "homepage": "https://github.com/skiano/genz#readme"
+  "homepage": "https://github.com/skiano/genz#readme",
+  "devDependencies": {
+    "happy-dom": "^15.7.4"
+  }
 }

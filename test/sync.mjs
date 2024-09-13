@@ -125,4 +125,9 @@ export default [
     assert.equal(txt, 'p{background-color:red;font-size:red;}');
   },
 
+  function TEST_INLINE_SCRIPT () {
+    const script = _.script(`console.log(\`hi there\`)`);
+    const txt = toString(script);
+    assert.equal(txt, `<script>console.log(\`hi there\`)</script>`);
+  },
 ];

@@ -35,7 +35,7 @@
    * dom, so that page styles can be inherited
    * by whatever component implementation is used
    */
-  customElements.define('gen-z', class CBox extends HTMLElement {
+  customElements.define('gen-z', class GenZ extends HTMLElement {
     constructor() {
       super();
     }
