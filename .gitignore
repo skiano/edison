@@ -1,5 +1,4 @@
-# the final file...
-genz.build.mjs
+*.min.js
 
 #standard
 node_modules

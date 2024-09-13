@@ -8,7 +8,7 @@
   "main": "genz.mjs",
   "scripts": {
     "test": "node test/_.mjs",
-    "build:client": "npx terser addons/client.js"
+    "build:client": "npx terser addons/client.js -m -c -o addons/client.min.js"
   },
   "repository": {
     "type": "git",
