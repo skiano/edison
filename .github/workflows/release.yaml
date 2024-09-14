@@ -37,7 +37,10 @@ jobs:
       - name: Get branch name
         id: get_branch
         run: |
-          BRANCH_NAME=$(git branch -r --contains tags/${{ github.ref_name }} | grep -Eo 'origin/[^ ]+$' | sed 's|origin/||')
+          echo "Tag: ${{ github.ref_name }}"
+          TAG_REF="refs/tags/${{ github.ref_name }}"
+          BRANCH_NAME=$(git for-each-ref --format '%(refname:short)' --contains $TAG_REF | grep -v '^tags/' || echo "main")
+          echo "Branch Name: $BRANCH_NAME"
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Push changes
