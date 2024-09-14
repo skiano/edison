@@ -8,7 +8,7 @@
   "main": "genz.js",
   "scripts": {
     "test": "node test/_.js",
-    "build:client": "npx terser addons/client.js -m -c -o addons/client.min.js"
+    "build:client": "terser addons/client.js -m -c -o addons/client.min.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/skiano/genz#readme",
   "devDependencies": {
-    "happy-dom": "^15.7.4"
+    "happy-dom": "^15.7.4",
+    "terser": "^5.32.0"
   }
 }
