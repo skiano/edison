@@ -3,7 +3,7 @@
   "author": "Greg Skiano",
   "license": "MIT",
   "type": "module",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "Streaming-first SSR for Node Apps",
   "main": "genz.js",
   "scripts": {
