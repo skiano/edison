@@ -17,34 +17,34 @@ jobs:
       - run: npm run build:client
       - run: npm test
 
-      - name: Update package.json with release version
-        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+      # - name: Update package.json with release version
+      #   run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Commit version change
-        if: success()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json
-          git commit -m "chore: update package.json to version ${{ github.event.release.tag_name }}"
+      # - name: Commit version change
+      #   if: success()
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+      #     git add package.json
+      #     git commit -m "chore: update package.json to version ${{ github.event.release.tag_name }}"
 
-      # Find the branch that the tag is based on
-      - name: Get branch name
-        id: get_branch
-        run: |
-          echo "Tag: ${{ github.ref_name }}"
-          TAG_REF="refs/tags/${{ github.ref_name }}"
-          BRANCH_NAME=$(git for-each-ref --format '%(refname:short)' --contains $TAG_REF | grep -v '^tags/' || echo "main")
-          echo "Branch Name: $BRANCH_NAME"
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
+      # # Find the branch that the tag is based on
+      # - name: Get branch name
+      #   id: get_branch
+      #   run: |
+      #     echo "Tag: ${{ github.ref_name }}"
+      #     TAG_REF="refs/tags/${{ github.ref_name }}"
+      #     BRANCH_NAME=$(git for-each-ref --format '%(refname:short)' --contains $TAG_REF | grep -v '^tags/' || echo "main")
+      #     echo "Branch Name: $BRANCH_NAME"
+      #     echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
 
-      - name: Push changes
-        if: success()
-        run: git push origin HEAD:$BRANCH_NAME
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Push changes
+      #   if: success()
+      #   run: git push origin HEAD:$BRANCH_NAME
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
