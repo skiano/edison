@@ -124,4 +124,5 @@ export default [
     const txt = toString(style);
     assert.equal(txt, 'p{background-color:red;font-size:red;}');
   },
+
 ];
