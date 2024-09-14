@@ -17,15 +17,13 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      - name: Update package.json with release version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Update package.json with release version
-        if: success()
-        run: |
-          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
       - name: Commit version change
         if: success()
