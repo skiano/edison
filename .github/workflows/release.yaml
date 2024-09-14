@@ -37,6 +37,6 @@ jobs:
 
       - name: Push changes
         if: success()
-        run: git push
+        run: git push origin HEAD:${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
