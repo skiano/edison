@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { Window } from "happy-dom";
-import { islandTrigger } from '../addons/islands.mjs';
-import { _, toString } from '../genz.mjs';
+import { islandTrigger } from '../addons/islands.js';
+import { _, toString } from '../genz.js';
 
 export default [
   function TEST_ISLAND_TRIGGER_EXISTS() {

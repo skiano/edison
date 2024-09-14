@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { _, toStream } from '../genz.mjs';
+import { _, toStream } from '../genz.js';
 import { Writable, Readable } from 'stream';
 import assert from 'assert';
 

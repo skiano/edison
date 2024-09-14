@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { _, toString, dedupe, css, mediaQuery } from '../genz.mjs';
+import { _, toString, dedupe, css, mediaQuery } from '../genz.js';
 
 export default [
 

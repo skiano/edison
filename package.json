@@ -3,11 +3,11 @@
   "author": "Greg Skiano",
   "license": "MIT",
   "type": "module",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "Streaming-first SSR for Node Apps",
-  "main": "genz.mjs",
+  "main": "genz.js",
   "scripts": {
-    "test": "node test/_.mjs",
+    "test": "node test/_.js",
     "build:client": "npx terser addons/client.js -m -c -o addons/client.min.js"
   },
   "repository": {

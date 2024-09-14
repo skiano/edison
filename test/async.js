@@ -1,4 +1,4 @@
-import { _, traverse } from '../genz.mjs';
+import { _, traverse } from '../genz.js';
 import assert from 'assert';
 
 export default [

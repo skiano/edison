@@ -3,7 +3,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 (async function runTests() {
-
   let failures = 0;
 
   const filename = fileURLToPath(import.meta.url);
@@ -12,7 +11,7 @@ import { fileURLToPath } from 'url';
 
   for (let f = 0; f < files.length; f++) {
     const file = files[f];
-    if (file.startsWith('_') || !file.endsWith('.mjs')) continue;
+    if (file.startsWith('_') || !file.endsWith('.js')) continue;
 
     const m = await import(path.resolve(dirname, file));
     if (!Array.isArray(m.default)) throw new Error(`Suite ${file} invalid`);

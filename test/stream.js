@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { Writable } from 'stream';
-import { _, toStream } from '../genz.mjs';
+import { _, toStream } from '../genz.js';
 
 class ResponseLike extends Writable {
   constructor(options) {
