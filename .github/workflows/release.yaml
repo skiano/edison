@@ -33,8 +33,15 @@ jobs:
           git add package.json
           git commit -m "chore: update package.json to version ${{ github.event.release.tag_name }}"
 
+      # Find the branch that the tag is based on
+      - name: Get branch name
+        id: get_branch
+        run: |
+          BRANCH_NAME=$(git branch -r --contains tags/${{ github.ref_name }} | grep -Eo 'origin/[^ ]+$' | sed 's|origin/||')
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
+
       - name: Push changes
         if: success()
-        run: git push origin HEAD:${{ github.ref_name }}
+        run: git push origin HEAD:$BRANCH_NAME
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
