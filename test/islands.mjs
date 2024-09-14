@@ -85,4 +85,49 @@ export default [
     // CLEANUP
     await window.happyDOM.close();
   },
+
+  // TODO: make sure passing no size option works too...
+
+  async function TEST_STRETCH_LAZY_INSTANTIATION() {
+    const window = new Window({});
+    const document = window.document;
+    document.write(toString(_.script(islandTrigger)));
+    document.write(`<gen-z id="t1" is="A" ratio="1/1"><section>filler</section></gen-z>`);
+    document.write(`<gen-z id="t2" is="A" height="100px"><section>filler</section></gen-z>`);
+    document.write(`<gen-z id="t3" is="B" data-prop="foo" height="200px"><section>filler</section></gen-z>`);
+    document.write(`<gen-z id="t4" is="B" data-prop="foo"><section>filler</section></gen-z>`);
+
+    // WAIT FOR ANY POTENTIAL REFLOW
+    await window.happyDOM.waitUntilComplete();
+
+    // SIMULATE LOADING A COMPONENT RENDERER LATER
+    await new Promise((r) => setTimeout(r, 15));
+    let handleA = [];
+    let handleB = [];
+    window.onGenZ('A', (...args) => { handleA.push(args) });
+    window.onGenZ('B', (...args) => { handleB.push(args) });
+
+    assert.equal(handleA.length, 2, 'handles all component a');
+    assert.equal(handleB.length, 2, 'handles all component b');
+
+    // notice because of the pop()... the components instantiate backwords in the first pass
+    assert.equal(handleA[0][0], document.getElementById('t2'), 'uses the outer wrapper as root for island');
+    assert.equal(handleA[1][0], document.getElementById('t1').firstChild, 'uses the inner wrapper as root for ratio islands');
+    assert.equal(handleB[0][0], document.getElementById('t4'), 'handles second b');
+    assert.equal(handleB[1][0], document.getElementById('t3'), 'handles first b');
+
+    // SIMULATE A NEW COMPONENT BEING ADDED TO THE PAGE
+    document.write(`<gen-z id="t5" is="A" data-a="foo" data-b="bar"></gen-z>`);
+    document.write(`<gen-z id="t6" is="B"></gen-z>`);
+    await window.happyDOM.waitUntilComplete();
+
+    assert.equal(handleA[2][0], document.getElementById('t5'), 'handles A after instantiation');
+    assert.equal(handleB[2][0], document.getElementById('t6'), 'handles B after instantiation');
+
+    assert.equal(handleA[2][1].a, 'foo', 'handles prop a');
+    assert.equal(handleA[2][1].b, 'bar', 'handles prop a');
+
+    // CLEANUP
+    await window.happyDOM.close();
+  },
 ]

@@ -23,7 +23,7 @@
   /**
    * NOTE: holdIt INTENTIONALLY GLOBAL (no need to say 'window')
    */
-  onGenz = (kind, fn) =>{
+  onGenZ = (kind, fn) => {
     handlers[kind] = fn;
     let tasks = pending[kind];
     if (tasks) while (tasks.length) { fn(...tasks.pop()) }
