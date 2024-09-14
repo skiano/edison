@@ -2,7 +2,7 @@
 
 Streaming-first SSR for Node Apps.
 
-⚠️ WARNING: This is exprimental.
+⚠️ WARNING: This is experimental.
 
 ## Contents
 
