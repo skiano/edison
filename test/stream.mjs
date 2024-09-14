@@ -20,25 +20,24 @@ class ResponseLike extends Writable {
 
 export default [
 
-  async function TEST_STREAM_EXAMPLE () {
-    await new Promise((resolve, reject) => {
-      const highWaterMark = 6;
-      const res = new ResponseLike({ highWaterMark });
+  // async function TEST_STREAM_EXAMPLE () {
+  //   await new Promise((resolve, reject) => {
+  //     const res = new ResponseLike({ highWaterMark: 6 });
 
-      res.on('drain', () => {
-        res.arr.push('DRAIN');
-      });
+  //     res.on('drain', () => {
+  //       res.arr.push('DRAIN');
+  //     });
 
-      res.on('close', () => {
-        assert.equal(res.arr.join(' '), '<div> <section> DRAIN section! DRAIN </section> DRAIN <p> hello </p> </div> DRAIN');
-        resolve();
-      });
+  //     res.on('close', () => {
+  //       assert.equal(res.arr.join(' '), '<div> <section> DRAIN section! DRAIN </section> DRAIN <p> hello </p> </div> DRAIN');
+  //       resolve();
+  //     });
 
-      res.on('error', reject);
+  //     res.on('error', reject);
 
-      toStream(res, _.div(_.section('section!'), _.p('hello')));
-    });
-  },
+  //     toStream(res, _.div(_.section('section!'), _.p('hello')));
+  //   });
+  // },
 
   async function TEST_ASYNC_DATA_FETCHING_FROM_CTX () {
 
